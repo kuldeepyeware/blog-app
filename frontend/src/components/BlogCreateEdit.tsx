@@ -26,8 +26,6 @@ export const BlogCreateEdit = ({ type }: BlogCreateEdit) => {
     }
   }, [type, blog]);
 
-  console.log("render");
-
   const publishBlog = async () => {
     setLoading(true);
     const response = await axios.post(

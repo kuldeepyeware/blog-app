@@ -101,6 +101,36 @@ blogRouter.put("/", async (c) => {
   }
 });
 
+blogRouter.delete("/delete", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const body = await c.req.json();
+  const authorId = c.get("userId");
+
+  try {
+    console.log(authorId);
+    console.log(body.postId);
+    if (authorId === body.authorId) {
+      const post = await prisma.post.delete({
+        where: {
+          id: body.postId,
+        },
+      });
+      return c.json({
+        id: post.id,
+      });
+    } else {
+      return c.json({
+        message: "Not an Owner",
+      });
+    }
+  } catch (error) {
+    c.status(403);
+    return c.text("Error Occured");
+  }
+});
+
 blogRouter.get("/bulk", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,

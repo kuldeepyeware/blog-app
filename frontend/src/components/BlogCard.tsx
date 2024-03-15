@@ -17,7 +17,7 @@ export const BlogCard = ({
   postedTime,
 }: BlogCardType) => {
   return (
-    <div className='flex justify-center mx-auto rounded  border-b-2 flex-col md:w-2/5 w-3/5'>
+    <div className='flex justify-center mx-auto rounded  border-b-2 flex-col w-3/5'>
       <Link className='mt-4  p-4' to={`/blog/${id}`}>
         <div>
           <div className='flex items-center gap-3 my-2'>
