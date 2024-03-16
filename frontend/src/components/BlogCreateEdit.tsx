@@ -27,6 +27,9 @@ export const BlogCreateEdit = ({ type }: BlogCreateEdit) => {
   }, [type, blog]);
 
   const publishBlog = async () => {
+    if (!title || !content) {
+      return alert("Enter Title & Blog Content");
+    }
     setLoading(true);
     const response = await axios.post(
       `${BACKEND_URL}api/v1/blog`,
@@ -47,6 +50,9 @@ export const BlogCreateEdit = ({ type }: BlogCreateEdit) => {
   };
 
   const editBlog = async () => {
+    if (!title || !content) {
+      return alert("Edit Title & Blog Content");
+    }
     setLoading(true);
     const response = await axios.put(
       `${BACKEND_URL}api/v1/blog`,

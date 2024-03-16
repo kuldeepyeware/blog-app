@@ -149,6 +149,9 @@ blogRouter.get("/bulk", async (c) => {
           },
         },
       },
+      orderBy: {
+        postedTime: "desc",
+      },
     });
     return c.json({
       posts,
