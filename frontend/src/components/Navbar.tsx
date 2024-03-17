@@ -8,8 +8,13 @@ export const Navbar = () => {
   const { user } = useUser();
 
   const clearToken = () => {
-    localStorage.removeItem("token");
-    navigate("/signin");
+    const result = window.confirm("Are you sure to Logout?");
+    if (result) {
+      localStorage.removeItem("token");
+      navigate("/signin");
+    } else {
+      return;
+    }
   };
 
   return (
